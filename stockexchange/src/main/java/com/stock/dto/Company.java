@@ -1,12 +1,32 @@
 package com.stock.dto;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Company {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	private String name;
+	@OneToMany
+	@JoinColumn(name = "share_id")
 	private List<Share> shares;
-	private List<StockUsers> customers;
+	@ManyToMany
+	private Set<StockUsers> customers;
+	@OneToOne
+	@JoinColumn(name="bank_id")
 	private Bank bank;
 	/**
 	 * @return the id
@@ -47,13 +67,13 @@ public class Company {
 	/**
 	 * @return the customers
 	 */
-	public List<StockUsers> getCustomers() {
+	public Set<StockUsers> getCustomers() {
 		return customers;
 	}
 	/**
 	 * @param customers the customers to set
 	 */
-	public void setCustomers(List<StockUsers> customers) {
+	public void setCustomers(Set<StockUsers> customers) {
 		this.customers = customers;
 	}
 	public Bank getBank() {
