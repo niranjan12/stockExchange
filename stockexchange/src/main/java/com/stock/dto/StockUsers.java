@@ -28,6 +28,7 @@ public class StockUsers {
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 	@OneToMany
+	@JoinColumn(name = "share_id")
 	private Set<Share> shares;
 	/**
 	 * @return the id

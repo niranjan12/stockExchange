@@ -12,6 +12,7 @@ public class Share {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	private long unitPrice;
 	public synchronized int getId() {
