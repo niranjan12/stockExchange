@@ -5,13 +5,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class StockUsers {
@@ -21,12 +21,11 @@ public class StockUsers {
 	private int id;
 	private String name;
 	private String address;
-	@ManyToMany
-	@JoinColumn(name = "company_id")
+	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY)
 	private List<Company> companies;
-	@OneToOne
-	@JoinColumn(name = "bank_id")
-	private Bank bank;
+	@OneToMany
+	@JoinColumn(name = "ubank_id")
+	private List<Bank> bank;
 	@OneToMany
 	@JoinColumn(name = "share_id")
 	private Set<Share> shares;
@@ -81,13 +80,13 @@ public class StockUsers {
 	/**
 	 * @return the bank
 	 */
-	public Bank getBank() {
+	public List<Bank> getBank() {
 		return bank;
 	}
 	/**
 	 * @param bank the bank to set
 	 */
-	public void setBank(Bank bank) {
+	public void setBank(List<Bank> bank) {
 		this.bank = bank;
 	}
 	public synchronized Set<Share> getShares() {

@@ -12,6 +12,7 @@ public class Bank {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private long accountNumber;
 	private String name;
 	private long deposit;
 	private long withDraw;
@@ -46,6 +47,13 @@ public class Bank {
 	public synchronized void setBalance(long balance) {
 		this.balance = balance;
 	}
+	public synchronized long getAccountNumber() {
+		return accountNumber;
+	}
+	public synchronized void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	
 	
 	
 

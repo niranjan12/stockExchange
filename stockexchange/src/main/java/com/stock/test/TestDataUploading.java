@@ -15,19 +15,22 @@ public class TestDataUploading {
 
 	public static void main(String[] args) {
 		Company company1 = new Company();
-		company1.setName("MAHENDRA");
+		company1.setName("Mahindra");
 		Bank bank1 = new Bank();
-		bank1.setName("ICICI Bank");
+		bank1.setName("Mahindra");
 		bank1.setDeposit(0);
 		bank1.setWithDraw(0);
-		bank1.setBalance(6000000);
-		company1.setBank(bank1);
+		bank1.setAccountNumber(56789);
+		bank1.setBalance(5000000);
+		ArrayList<Bank> b = new ArrayList<Bank>();
+		b.add(bank1);
+		company1.setBank(b);
 		Share share = new Share();
-		share.setName("MAHENDRA");
+		share.setName("Mahindra");
 		share.setUnitPrice(60);
 		List<Share> shares = new ArrayList<Share>();
 		shares.add(share);
-		company1.setShares(shares);
+		company1.setShares(share);
 		Session session = HibernateSessionUtils.getHibernateSession();
 		Transaction txn = session.beginTransaction();
 		session.save(bank1);

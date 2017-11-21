@@ -12,6 +12,7 @@ public class CompanyDao {
 	
 	private Session session;
 	
+	@SuppressWarnings("unchecked")
 	public List<Company> getAllCompanies(){
 		List<Company> companies = null;
 		session = HibernateSessionUtils.getHibernateSession();

@@ -20,14 +20,13 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	private String name;
-	@OneToMany
-	@JoinColumn(name = "share_id")
-	private List<Share> shares;
+	@OneToOne
+	private Share shares;
 	@ManyToMany
 	private Set<StockUsers> customers;
-	@OneToOne
-	@JoinColumn(name="bank_id")
-	private Bank bank;
+	@OneToMany
+	@JoinColumn(name="cbank_id")
+	private List<Bank> bank;
 	/**
 	 * @return the id
 	 */
@@ -55,13 +54,13 @@ public class Company {
 	/**
 	 * @return the shares
 	 */
-	public List<Share> getShares() {
+	public Share getShares() {
 		return shares;
 	}
 	/**
 	 * @param shares the shares to set
 	 */
-	public void setShares(List<Share> shares) {
+	public void setShares(Share shares) {
 		this.shares = shares;
 	}
 	/**
@@ -76,10 +75,10 @@ public class Company {
 	public void setCustomers(Set<StockUsers> customers) {
 		this.customers = customers;
 	}
-	public Bank getBank() {
+	public List<Bank> getBank() {
 		return bank;
 	}
-	public void setBank(Bank bank) {
+	public void setBank(List<Bank> bank) {
 		this.bank = bank;
 	}
 	

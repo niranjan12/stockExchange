@@ -1,5 +1,7 @@
 package com.stock.test;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,15 +15,22 @@ public class UserDataUpload {
 
 	public static void main(String[] args) {
 		Session session = HibernateSessionUtils.getHibernateSession();
-		String name = "user";
 		int count = 100;
 		Transaction txn = session.beginTransaction();
-		for(int i=51;i<=count;i++){
-			Bank bank = (Bank) session.get(Bank.class, 3);
+		for(int i=0;i<=count;i++){
+			String usr = "user_"+i;
+			Bank bank = new Bank();
+			bank.setBalance(0);
+			bank.setDeposit(0);
+			bank.setAccountNumber(i);
+			bank.setName(usr);
+			ArrayList<Bank> banks = new ArrayList<Bank>();
+			banks.add(bank);
 			StockUsers user = new StockUsers();
-			user.setName("user_"+i);
+			user.setName(usr);
+			user.setBank(banks);
 			user.setAddress("Hyderabad");
-			user.setBank(bank);
+			session.save(bank);
 			session.save(user);
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@"+i);
 			
